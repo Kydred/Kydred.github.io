@@ -316,57 +316,37 @@ function decodeCipherText(cipherText) {
 }
 
 function separateVowelsAndConsonants(name) {
-    // Function to check if a character is a vowel
-    function isVowel(char) {
-        return ['A', 'E', 'I', 'O', 'U'].includes(char.toUpperCase());
-    }
-
-    // Split the name into individual words
-    const words = name.split(' ');
-
-    // Arrays to store vowels and consonants
-    const vowels = [];
-    const consonants = [];
-
-    // Iterate through each word
-    words.forEach(word => {
-        // Check if the first character is 'Y'
-        const firstChar = word.charAt(0).toUpperCase();
-        const isYConsonant = firstChar === 'Y';
-
-        let prevIsVowel = false; // Flag to track if the previous character was a vowel
-
-        // Iterate through each character of the word
-        for (let i = 0; i < word.length; i++) {
-            const char = word.charAt(i).toUpperCase();
-            
-            // Determine if the character is a vowel or consonant based on the rule for 'Y'
-            if (char === 'Y') {
-                if (isYConsonant) {
-                    consonants.push(char);
-                } else {
-                    if (prevIsVowel) {
-                        vowels.push(vowels.pop() + char);
-                    } else {
-                        vowels.push(char);
-                    }
-                }
-            } else if (isVowel(char)) {
-                if (prevIsVowel) {
-                    vowels.push(vowels.pop() + char);
-                } else {
-                    vowels.push(char);
-                    prevIsVowel = true;
-                }
+    // Convert the name to lowercase to simplify the comparison
+    const words = name.toUpperCase().split(" ");
+    let prevIsVowel = false; // Flag to track if the previous character was a vowel
+    // Initialize arrays to hold vowels and consonants
+    let vowels = [];
+    let consonants = [];
+    words.forEach(word => {    // Loop through each character in the name
+      for (let i = 0; i < word.length; i++) {
+          let char = word.charAt(i);
+          // Check if the character is a vowel
+          if ( "AEIOU".includes(char) || (char === "y" && !/[AEIOU]/.test(word))) {
+            if (prevIsVowel) {
+              vowels.push(vowels.pop() + char);
             } else {
-                consonants.push(char);
-                prevIsVowel = false;
+              vowels.push(char);
             }
-        }
+            prevIsVowel = true;
+          } else {
+            consonants.push(char);
+            prevIsVowel = false;
+          }
+      }
     });
-
-    return { vowels: vowels, consonants: consonants };
+    
+    // Return an object containing the separated vowels and consonants
+    return {
+        vowels: vowels,
+        consonants: consonants
+    };
 }
+
 function convertStringArrayToNumberArray(stringArray) {
     // Join all strings in the array into a single string
     const concatenatedString = stringArray.join(' ');
