@@ -1,0 +1,36 @@
+<html>
+    <body>
+        <h1>Life Path Calculator</h1>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="Trần Đình Duy" required><br><br>
+            
+            <label for="birthday">Birthday:</label>
+            <input type="text" id="birthday" name="birthday" value="24/10/1998" placeholder="dd/mm/yyyy" maxlength="10" oninput="formatBirthdayInput()" required><br><br>
+            
+            <button type="button" onclick="numerology()">Calculate</button>
+        </form>
+        <div id="results">
+            <div id="nameAndIdentifyCharactersResult"></div> <!-- Display the Birthday Sum value here -->
+            <div id="fortuneResult"></div> <!-- Display the Birthday Sum value here -->
+            <div id="compassResult"></div> <!-- Display the Birthday Sum value here -->
+            <div id="soulResult"></div> <!-- Display the Birthday Sum value here -->
+            <div id="personalityResult"></div> <!-- Display the Birthday Sum value here -->
+            <div id="balanceResult"></div> <!-- Display the Birthday Sum value here -->
+            <div id="weaknessAndPassionResult"></div> <!-- Display the Birthday Sum value here -->
+            <div id="maturityResult"></div> <!-- Display the Birthday Sum value here -->
+            <div id="rationalThoughtResult"></div> <!-- Display the Birthday Sum value here -->
+        </div>
+        <hr/>
+        <div id="results">
+            <div id="birthdayResult"></div> <!-- Display the Birthday Sum value here -->
+            <div id="lifePathResult"></div> <!-- Display the Life Path value here -->
+            <div id="lifeStageResult"></div> <!-- Display the Life Stage results here -->
+            <div id="lifeLessonResult"></div> <!-- Display the Life Lesson results here -->
+            <div id="personalYearResult"></div> <!-- Display the Personal Year results here -->
+            <div id="personalMonthResult"></div> <!-- Display the Personal Month results here -->
+        </div>
+
+        <script src="main.js"></script>
+    </body>
+</html>
