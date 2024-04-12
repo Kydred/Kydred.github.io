@@ -88,7 +88,7 @@ function numerology() {
     const LP = sumDigits(calculateLifePath_DMYLP(dateOfBirth).LP);
     document.getElementById("maturityResult").textContent = "Maturity: " + sumDigits(LP + fortune);
 
-    document.getElementById("rationalThoughtResult").textContent = "Rational Thought: " + sumDigits(balance + compass);
+    document.getElementById("rationalThoughtResult").textContent = "Rational Thought: " + sumDigits(birthday + compass);
 }
 
 // Function to sum the digits of a number until it's a single digit
