@@ -59,7 +59,8 @@ function numerology() {
     const numArray = convertStringArrayToNumberArray(nameConverted.decodedNameWords);
     const weaknessAndPassion = calculateWeaknessAndPassion(numArray);
     const weaknessAndPassionHTML = convertWeaknessAndPassionToHTML(weaknessAndPassion);
-    document.getElementById("weaknessAndPassionResult").innerHTML = "Weakness And Passion: " + weaknessAndPassionHTML;
+    document.getElementById("weaknessAndPassionTitle").innerHTML = "Weakness And Passion: ";
+    document.getElementById("weaknessAndPassionResult").innerHTML = weaknessAndPassionHTML;
 
     //---------
     const dateOfBirth = document.getElementById("birthday").value;
@@ -449,7 +450,7 @@ function calculateWeaknessAndPassion(numbers) {
         } else if (frequency[num] >= 2) {
             result[num] = 'P';
         } else {
-            result[num] = '-';
+            result[num] = '_';
         }
     }
 

@@ -96,6 +96,13 @@ body {
         display: none;
     } */
 
+    ul {
+      padding-left: 25px;
+    }
+
+    .container{
+      width: 90%;
+    }
     .column-container {
       flex-direction: column;
     }
