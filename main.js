@@ -1,6 +1,7 @@
 
 // special cases where LP should be kept intact
 const specialCases_LP = [13, 14, 16, 19, 11, 22, 33];
+const specialCases_M_RT = [11, 22];
 const cipherMapping_name = {
     A: 1, B: 2, C: 3, D: 4, E: 5, F: 6, G: 7, H: 8, I: 9,
     J: 1, K: 2, L: 3, M: 4, N: 5, O: 6, P: 7, Q: 8, R: 9,
@@ -87,9 +88,19 @@ function numerology() {
 
     // ----
     const LP = sumDigits(calculateLifePath_DMYLP(dateOfBirth).LP);
-    document.getElementById("maturityResult").textContent = "Maturity: " + sumDigits(LP + fortune);
+    const MM = LP + fortune;
+    if (specialCases_M_RT.includes(MM)) {
+        document.getElementById("maturityResult").textContent = "Maturity: " + MM + '/' + sumDigits(MM);
+    } else {
+        document.getElementById("maturityResult").textContent = "Maturity: " + sumDigits(MM);
+    }
 
-    document.getElementById("rationalThoughtResult").textContent = "Rational Thought: " + sumDigits(birthday + compass);
+    const RT = birthday + compass;
+    if (specialCases_M_RT.includes(RT)) {
+        document.getElementById("rationalThoughtResult").textContent = "Rational Thought: " +  RT + '/' + sumDigits(RT);
+    } else {
+        document.getElementById("rationalThoughtResult").textContent = "Rational Thought: " + sumDigits(RT);
+    }
 }
 
 // Function to sum the digits of a number until it's a single digit
