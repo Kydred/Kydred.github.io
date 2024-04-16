@@ -11,9 +11,9 @@
 <body>
 
     <div class="container">
-        <div class="title">Numerology</div>
 
-        <div class="form-container">
+        <div class="form-container noprint">
+            <div class="title">Numerology</div>
             <form>
                 <div class="form-group">
                     <input type="text" id="name" name="name" value="Trần Đình Duy" required>
@@ -27,8 +27,10 @@
             </form>
         </div>
 
+        <h3 id="name_birthday"></h3>
+
         <div class="column-container">
-            <div class="column">
+            <div class="column break-page">
                 <h3>Name calculation</h3>
                 <div id="nameAndIdentifyCharactersResult"></div> <!-- Display the Birthday Sum value here -->
                 <div id="fortuneResult"></div> <!-- Display the Birthday Sum value here -->
@@ -40,6 +42,7 @@
                 <div id="rationalThoughtResult"></div> <!-- Display the Birthday Sum value here -->
                 <div id="weaknessAndPassionTitle"></div> <!-- Display the Birthday Sum value here -->
                 <div id="weaknessAndPassionResult"></div> <!-- Display the Birthday Sum value here -->
+                <canvas id="weaknessAndPassionChart" width="400" height="200"></canvas>
             </div>
             <div class="column">
                 <h3>Birthday calculation</h3>
@@ -52,14 +55,15 @@
             </div>
         </div>
     </div>
-
-    <div class="left-ad">
+    <div class="title print">Numerology by Nobydi</div>
+    <div class="left-ad noprint">
         QC nè
     </div>
 
-    <div class="right-ad">
+    <div class="right-ad noprint">
         QC nè
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <script src="main.js"></script>
 </body>
 

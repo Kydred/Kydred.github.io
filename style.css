@@ -112,3 +112,109 @@ body {
       margin-bottom: 20px;
     }
   }
+
+  .print {
+    visibility: collapse;
+    height: 0px;
+  }
+
+  @media print {
+      .noprint {
+        visibility: collapse;
+        height: 0px;
+      }
+
+      .print {
+        visibility: visible;
+        height: auto;
+      }
+      
+      .title {
+        margin-bottom: 10px;
+      }
+      
+      .break-page {page-break-after: always;}
+  }
+
+
+
+  /* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Slab', serif; /* A serif font with a slightly industrial feel */
+  background-color: #efe9e2; /* Light brown background */
+  background-image: url("https://pixabay.com/images/search/steam%20punk/"); /* Add a subtle steampunk texture */
+  background-repeat: repeat;
+  background-attachment: fixed;
+}
+
+.form-container button {
+  background-color: #bfa06c;
+}
+.column-container {
+  display: flex;
+  flex-wrap: wrap; /* Wrap columns on smaller screens */
+  margin: 20px auto;
+  max-width: 90%;
+}
+
+.column {
+  flex: 1 0 45%; /* Set column width for desktop and adjust for mobile */
+  padding: 20px;
+  margin: 10px;
+  border: 2px solid #d2b48c; /* Copper border */
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Subtle drop shadow */
+  background-image: url("https://pixabay.com/videos/search/steampunk%20gears/"); /* Add a faint gear pattern overlay */
+  background-repeat: repeat;
+}
+
+h3 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #805a32; /* Dark brown for headings */
+}
+#name_birthday {
+  text-align: center;
+}
+
+#nameAndIdentifyCharactersResult,
+#fortuneResult,
+#compassResult,
+#soulResult,
+#personalityResult,
+#balanceResult,
+#maturityResult,
+#rationalThoughtResult,
+#weaknessAndPassionTitle,
+#weaknessAndPassionResult,
+#birthdayResult,
+#lifePathResult,
+#lifeStageResult,
+#lifeLessonResult,
+#personalYearResult,
+#personalMonthResult {
+  margin-bottom: 10px;
+}
+
+/* Steampunk Decoration Images (adjust position as needed) */
+.column:nth-child(1)::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 20px;
+  background-image: url("https://pixabay.com/photos/gauge-pressure-measure-steampunk-4601454/"); /* Gauge image */
+  background-repeat: no-repeat;
+  background-position: bottom right;
+}
+
+.column:nth-child(2)::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 20px;
+  background-image: url("https://pixabay.com/illustrations/ai-generated-compass-steampunk-8619542/"); /* Compass image */
+  background-repeat: no-repeat;
+  background-position: bottom right;
+}

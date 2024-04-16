@@ -30,7 +30,6 @@ function formatBirthdayInput() {
 function numerology() {
     var name1 = document.getElementById("name").value;
     var name2 = removeAccents(name1);
-    console.log(name2);
 
     const nameConverted = decodeNameToNumber(name2);
     const nameConvertedHtml = decodeNameToNumberToHTML(nameConverted);
@@ -59,12 +58,55 @@ function numerology() {
 
     const numArray = convertStringArrayToNumberArray(nameConverted.decodedNameWords);
     const weaknessAndPassion = calculateWeaknessAndPassion(numArray);
-    const weaknessAndPassionHTML = convertWeaknessAndPassionToHTML(weaknessAndPassion);
+    const weaknessAndPassionHTML = convertWeaknessAndPassionToHTML(weaknessAndPassion.result);
     document.getElementById("weaknessAndPassionTitle").innerHTML = "Weakness And Passion: ";
     document.getElementById("weaknessAndPassionResult").innerHTML = weaknessAndPassionHTML;
 
+    // Assuming your data is in a variable called "weaknessAndPassionData" where each object has properties "number" and "count"
+
+    const weaknessAndPassionChart = document.getElementById('weaknessAndPassionChart');
+    // console.log(weaknessAndPassion.frequency.map(item => item));
+    // console.log(weaknessAndPassion.frequency.map(item => item[item]));
+    // const chartData = {
+    // labels: weaknessAndPassion.frequency.map(item => item.number),
+    // datasets: [{
+    //     label: 'Count',
+    //     data: weaknessAndPassion.frequency.map(item => item.count),
+    //     backgroundColor: weaknessAndPassion.frequency.map(item => item.count > 1 ? '#805a32' : '#bfa06c'), // Steampunk brown for > 1, copper for <= 1
+    //     borderColor: '#d2b48c', // Consistent copper border
+    // }]};
+
+    const chartData = {
+        labels: Object.keys(weaknessAndPassion.frequency).map(number => parseInt(number)), // Convert keys to numbers
+        datasets: [{
+          label: '',
+          data: Object.values(weaknessAndPassion.frequency), // Extract count values
+          backgroundColor: Object.values(weaknessAndPassion.frequency).map(count => count > 1 ? '#805a32' : '#bfa06c'), // Steampunk brown for > 1, copper for <= 1
+          borderColor: '#d2b48c', // Consistent copper border
+        }]
+      };
+
+    const weaknessAndPassionChartInstance = new Chart(weaknessAndPassionChart, {
+    type: 'line',
+    data: chartData,
+    options: {
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+        scales: {
+            y: {
+                min: 0,
+                max: Math.max(...chartData.datasets[0].data) + 2,
+              }
+        }
+    }});
+
+
     //---------
     const dateOfBirth = document.getElementById("birthday").value;
+    document.getElementById("name_birthday").innerHTML = name2 + " - " + dateOfBirth;
     
     const birthday = calculateBirthday(dateOfBirth);
     document.getElementById("birthdayResult").textContent = "Birthday: " + birthday;
@@ -453,6 +495,7 @@ function calculateWeaknessAndPassion(numbers) {
         frequency[num]++;
     });
 
+    console.log(frequency);
     // Determine weakness (0), passion (2 or more), or normal occurrence (1) for each number
     const result = {};
     for (let num in frequency) {
@@ -465,7 +508,7 @@ function calculateWeaknessAndPassion(numbers) {
         }
     }
 
-    return result;
+    return { result, frequency };
 }
 
 function convertWeaknessAndPassionToHTML(result) {
@@ -489,3 +532,5 @@ function convertWeaknessAndPassionToHTML(result) {
     // Return the HTML content
     return htmlContent;
 }
+
+
