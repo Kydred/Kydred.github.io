@@ -22,7 +22,11 @@ const weaknessAndPassionChartInstance = new Chart(weaknessAndPassionChart, {
                 min: 0,
                 max: 0,
                 ticks: {
-                    stepSize: 1
+                    min: 0,
+                    stepSize: 1,
+                    callback: function(value, index) {
+                        if (value !== 0) return value;
+                     }
                   }
               }
         }
@@ -107,7 +111,15 @@ function numerology() {
       };
       weaknessAndPassionChartInstance.data = chartData;
       weaknessAndPassionChartInstance.options.scales.y = {
+        min: 0,
         max: Math.max(...chartData.datasets[0].data) + 2,
+        ticks: {
+            min: 0,
+            stepSize: 1,
+            callback: function(value, index) {
+                if (value !== 0) return value;
+             }
+          }
     };
       weaknessAndPassionChartInstance.update();
     // const weaknessAndPassionChartInstance = new Chart(weaknessAndPassionChart, {
@@ -522,7 +534,6 @@ function calculateWeaknessAndPassion(numbers) {
         frequency[num]++;
     });
 
-    console.log(frequency);
     // Determine weakness (0), passion (2 or more), or normal occurrence (1) for each number
     const result = {};
     for (let num in frequency) {
