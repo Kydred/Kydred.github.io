@@ -132,7 +132,7 @@ body {
       .title {
         margin-bottom: 10px;
       }
-      
+
       .break-page {page-break-after: always;}
   }
 
@@ -155,7 +155,7 @@ body {
 .column-container {
   display: flex;
   flex-wrap: wrap; /* Wrap columns on smaller screens */
-  margin: 20px auto;
+  margin: 10px auto;
   max-width: 90%;
 }
 
@@ -169,7 +169,16 @@ body {
   background-image: url("https://pixabay.com/videos/search/steampunk%20gears/"); /* Add a faint gear pattern overlay */
   background-repeat: repeat;
 }
-
+@media only screen and (max-width: 768px) {
+  .column-container {
+    margin: 0px auto;
+    max-width: 100%;
+  }
+  
+  .column {
+    margin: 10px 0px;
+  }
+}
 h3 {
   text-align: center;
   margin-bottom: 15px;

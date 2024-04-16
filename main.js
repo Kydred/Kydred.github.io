@@ -8,6 +8,26 @@ const cipherMapping_name = {
     S: 1, T: 2, U: 3, V: 4, W: 5, X: 6, Y: 7, Z: 8
 };
 
+const weaknessAndPassionChartInstance = new Chart(weaknessAndPassionChart, {
+    type: 'line',
+    data: [],
+    options: {
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+        scales: {
+            y: {
+                min: 0,
+                max: 0,
+                ticks: {
+                    stepSize: 1
+                  }
+              }
+        }
+    }});
+
 function removeAccents(str) {
     return str.normalize('NFD')
               .replace(/[\u0300-\u036f]/g, '')
@@ -85,23 +105,30 @@ function numerology() {
           borderColor: '#d2b48c', // Consistent copper border
         }]
       };
-
-    const weaknessAndPassionChartInstance = new Chart(weaknessAndPassionChart, {
-    type: 'line',
-    data: chartData,
-    options: {
-        plugins: {
-            legend: {
-                display: false
-            }
-        },
-        scales: {
-            y: {
-                min: 0,
-                max: Math.max(...chartData.datasets[0].data) + 2,
-              }
-        }
-    }});
+      weaknessAndPassionChartInstance.data = chartData;
+      weaknessAndPassionChartInstance.options.scales.y = {
+        max: Math.max(...chartData.datasets[0].data) + 2,
+    };
+      weaknessAndPassionChartInstance.update();
+    // const weaknessAndPassionChartInstance = new Chart(weaknessAndPassionChart, {
+    // type: 'line',
+    // data: chartData,
+    // options: {
+    //     plugins: {
+    //         legend: {
+    //             display: false
+    //         }
+    //     },
+    //     scales: {
+    //         y: {
+    //             min: 0,
+    //             max: Math.max(...chartData.datasets[0].data) + 2,
+    //             ticks: {
+    //                 stepSize: 1
+    //               }
+    //           }
+    //     }
+    // }});
 
 
     //---------
